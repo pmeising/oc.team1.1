@@ -155,7 +155,7 @@ from tensorflow.keras.optimizers import Adam
 model_1 = Sequential([
   InputLayer(input_shape=(len(r.training_features.keys()), )),
   BatchNormalization(),
-  Dense(32, activation='tanh'),
+  Dense(16, activation='relu'),
   Dense(8, activation='relu'),
   Dense(1)
 ])
@@ -167,10 +167,10 @@ model_1 = Sequential([
 ```{python}
 
 # Definition der Kosten-(Loss-)Funktion und der Optimierungsfunktion mit seinen Hyperparametern
- model_1.compile(loss="mse", optimizer=Adam(learning_rate=0.001))
+ model_1.compile(loss="mse", optimizer=Adam(learning_rate=0.01))
 
 # Schaetzung des Modells
-history_1 = model_1.fit(r.training_features, r.training_label, epochs=1200,
+history_1 = model_1.fit(r.training_features, r.training_label, epochs=750,
                     validation_data = (r.validation_features, r.validation_label), verbose=0)
 
 
